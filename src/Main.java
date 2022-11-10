@@ -10,14 +10,22 @@ public class Main {
     public static int contadorBingo;
 
     public static void main(String[] args) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 5; j++) {
-                do {
-                    generateRandom();
-                    setValue(i);
-                } while (!flag);
+        do {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 5; j++) {
+                    do {
+                        generateRandom();
+                        setValue(i);
+                    } while (!flag);
+                }
             }
-        }
+            for (int i = 0; i < 9; i++) {
+                if (bingo[0][i] == 0 && bingo[1][i] == 0 && bingo[2][i] == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+        } while (!flag);
         bingoToString();
         printSBingo();
         System.out.println();
@@ -90,7 +98,7 @@ public class Main {
         for (int allNum : allNums) {
             if (numRandom == allNum) {
                 contador++;
-                
+
             }
         }
         if (contador != 0) {
@@ -129,7 +137,7 @@ public class Main {
         columna = (int) (Math.random() * 9);
         int min = columna * 10;
         int max = (columna * 10) + 9;
-        if (columna == 9) {
+        if (columna == 8) {
             max = 90;
         }
         numRandom = (int) (Math.random() * (max - min) + min);
